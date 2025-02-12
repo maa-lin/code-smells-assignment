@@ -4,7 +4,6 @@
   dessa hopplängder.
   */
 
-
   function getLength(jumps: number[]): number {
 
     return jumps.reduce(
@@ -79,30 +78,21 @@
     5. Följande funktion kommer presentera studenter. Men det finns ett antal saker som 
     går att göra betydligt bättre. Gör om så många som du kan hitta!
     */
-  function presentStudents(students: Student[]) {
-    for (const student of students) {
-      if (student.handedInOnTime) {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = true;
+  //  valde att göra en lista istället för två eftersom checkboxes redan visar om man är 
+  //  passed eller failed, alternativt hade man kunnat göra två separata listor utan checkboxes, 
+  //  Passed student & Failed Students 
   
-        container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#passedstudents");
-        listOfStudents?.appendChild(container);
-      } else {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = false;
-  
-        container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#failedstudents");
-        listOfStudents?.appendChild(container);
-      }
-    }
+    function presentStudents(students: Student[]) {
+      const container = document.getElementById("container");
+      const studentList = document.createElement("ul");
+    
+    students.forEach((student) => {
+      const studentStatus = student.handedInOnTime ? "checked" : "";
+      studentList.innerHTML += `<li>${student.name} <input type="checkbox" ${studentStatus}></li>`;
+    })
+
+    container?.appendChild(studentList);
   }
-  
   /*
     6. Skriv en funktion som skall slå ihop följande texter på ett bra sätt:
     Lorem, ipsum, dolor, sit, amet
