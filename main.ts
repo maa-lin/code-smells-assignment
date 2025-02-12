@@ -36,23 +36,18 @@
     Det finns flera code smells att identifiera här. Vissa är lurigare än andra.
     */
   
-  class Temp {
-    constructor(public q: string, public where: Date, public v: number) {}
-  }
-  
-  function averageWeeklyTemperature(heights: Temp[]) {
-    let r = 0;
-  
-    for (let who = 0; who < heights.length; who++) {
-      if (heights[who].q === "Stockholm") {
-        if (heights[who].where.getTime() > Date.now() - 604800000) {
-          r += heights[who].v;
-        }
-      }
+    class TemperatureReading {
+      constructor(public city: string, public date: Date, public temperature: number) {}
     }
-  
-    return r / 7;
-  }
+    
+    function averageWeeklyTemperature(readings: TemperatureReading[], city: string) {
+      const oneWeekAgo = Date.now() - 604800000;
+    
+      const validReadings = readings.filter(reading => reading.city === city && reading.date.getTime() > oneWeekAgo)
+      const sum = validReadings.reduce((total, reading) => total + reading.temperature, 0)
+    
+      return sum / validReadings.length;
+    }
   
   /*
     4. Följande funktion kommer att presentera ett objekt i dom:en. 
