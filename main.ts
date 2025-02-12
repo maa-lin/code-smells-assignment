@@ -81,7 +81,7 @@
   //  valde att göra en lista istället för två eftersom checkboxes redan visar om man är 
   //  passed eller failed, alternativt hade man kunnat göra två separata listor utan checkboxes, 
   //  Passed student & Failed Students 
-  
+
     function presentStudents(students: Student[]) {
       const container = document.getElementById("container");
       const studentList = document.createElement("ul");
@@ -98,16 +98,11 @@
     Lorem, ipsum, dolor, sit, amet
     Exemplet under löser problemet, men inte speciellt bra. Hur kan man göra istället?
     */
-  function concatenateStrings() {
-    let result = "";
-    result += "Lorem";
-    result += "ipsum";
-    result += "dolor";
-    result += "sit";
-    result += "amet";
-  
-    return result;
-  }
+    function concatenateStrings() {
+      const result = ["Lorem", "ipsum", "dolor", "sit", "amet"]
+    
+      return result.join(" ");
+    }
   
   /* 
   7. Denna funktion skall kontrollera att en användare är över 20 år och göra någonting.
